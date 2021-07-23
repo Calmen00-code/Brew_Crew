@@ -1,6 +1,10 @@
 {
-    "git.ignoreLimitWarning": true,
+    // "git.ignoreLimitWarning": true,
     "dart.flutterRunAdditionalArgs": [
         "--no-sound-null-safety"
-    ]
+    ],
+    "dart.vmAdditionalArgs": [
+        "--no-sound-null-safety"
+    ],
+    "git.ignoreLimitWarning": true
 }
