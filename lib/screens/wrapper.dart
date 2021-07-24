@@ -16,10 +16,13 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Using provider of method to get the state of user sign in or sign out
-    final UserApp? user = Provider.of<UserApp?>(context);
-    print(user);
+    final user = Provider.of<UserApp?>(context);
 
     // Return either home or authenticate widget
-    return Authenticate();
+    if (user == null) {
+      return Authenticate();
+    } else {
+      return Home();
+    }
   }
 }

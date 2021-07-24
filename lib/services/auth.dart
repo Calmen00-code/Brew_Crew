@@ -50,4 +50,12 @@ class AuthService {
   // Register with email & password
 
   // Sign out
+  Future signOut() async {
+    try {
+      return await _firebaseAuth.signOut();
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 }
