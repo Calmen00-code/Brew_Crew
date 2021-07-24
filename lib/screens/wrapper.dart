@@ -6,9 +6,7 @@
 
 import 'package:brew_crew/screens/authenticate/authenticate.dart';
 import 'package:flutter/material.dart';
-// ignore: unused_import
 import 'package:brew_crew/screens/home/home.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 import 'package:brew_crew/models/user.dart';
 
@@ -18,7 +16,8 @@ class Wrapper extends StatelessWidget {
     // Using provider of method to get the state of user sign in or sign out
     final user = Provider.of<UserApp?>(context);
 
-    // Return either home or authenticate widget
+    // @return home when user logged in
+    // @return authenticate when user logged out or no user detected
     if (user == null) {
       return Authenticate();
     } else {

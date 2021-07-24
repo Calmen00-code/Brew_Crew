@@ -1,22 +1,19 @@
-// ignore: slash_for_doc_comments
-/**
- * Display the sign in page and the button to select
- * the sign in method/mode
- */
 import 'package:brew_crew/services/auth.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
+  // const Register({Key? key}) : super(key: key);
+
   // Here instead of State class as this is the constructor for the widget
   final Function toogleView;
 
-  SignIn({required this.toogleView});
+  Register({required this.toogleView});
 
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
 
   String email = '';
@@ -29,14 +26,14 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
-        title: Text('Sign In'),
+        title: Text('Sign Up'),
         actions: <Widget>[
           TextButton.icon(
             onPressed: () {
               widget.toogleView();
             },
             icon: Icon(Icons.person),
-            label: Text('Register'),
+            label: Text('Sign In'),
           ),
         ],
         centerTitle: true,
@@ -64,7 +61,7 @@ class _SignInState extends State<SignIn> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(primary: Colors.lightBlue),
                 child: Text(
-                  'Sign In',
+                  'Register',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {
