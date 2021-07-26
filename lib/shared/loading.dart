@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/foundation.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-// import 'package:brew_crew/screens/authenticate/sign_in.dart';
 
 class Loading extends StatefulWidget {
   @override
@@ -12,13 +10,13 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[900],
+      backgroundColor: Colors.brown[200],
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 120.0, 0, 0),
           child: Column(
             children: <Widget>[
-              SpinKitRotatingCircle(
+              SpinKitFadingCircle(
                 color: Colors.white,
                 size: 50.0,
               ),

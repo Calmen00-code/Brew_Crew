@@ -2,18 +2,16 @@
 /**
  * Purpose: Handles the authentication of the user
  * Interact: Firebase
+ * @associate FirebaseAuth Object
  */
 
-// ignore: unused_import
-import 'package:flutter/material.dart';
-// ignore: import_of_legacy_library_into_null_safe
+import 'package:brew_crew/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:brew_crew/models/user.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  // Create user object based on firebase user
   UserApp _userFromFirebaseUser(User? user) {
     if (user != null) {
       return UserApp(user.uid);
@@ -37,6 +35,7 @@ class AuthService {
     try {
       UserCredential result = await _firebaseAuth.signInAnonymously();
       User? user = result.user;
+
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
@@ -46,8 +45,34 @@ class AuthService {
   }
 
   // Sign in with email & password
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential result = await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
+      User? user = result.user;
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
   // Register with email & password
+  Future registerWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential result = await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      User? user = result.user;
+
+      // Create a new document for the user with the uid in the database
+      await DatabaseService(uid: user!.uid)
+          .updateUserData('0', 'new crew member', 100);
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
   // Sign out
   Future signOut() async {

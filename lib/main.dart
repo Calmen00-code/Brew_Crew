@@ -14,12 +14,15 @@ void main() async {
     StreamProvider<UserApp?>.value(
       initialData: null,
       value: AuthService().user,
-      child: App(),
+      child: MaterialApp(
+        home: Wrapper(),
+      ),
       catchError: (_, __) => null,
     ),
   );
 }
 
+/*
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -27,20 +30,5 @@ class App extends StatelessWidget {
       home: Wrapper(),
     );
   }
-
-/*
-  Widget _buildStreamProvider() {
-    return MaterialApp(
-      StreamProvider<UserApp?>.value(
-        initialData: null,
-        value: AuthService().user,
-        child: Column(
-          children: <Widget>[
-            Wrapper(),
-          ],
-        ),
-      ),
-    );
-  }
-  */
 }
+*/
