@@ -21,7 +21,9 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return Authenticate();
     } else {
-      return Home();
+      // Passing user to Home to retrieve the uid
+      // when calling DatabaseService() in StreamProvider of home.dart
+      return Home(user);
     }
   }
 }

@@ -2,6 +2,7 @@ import 'package:brew_crew/services/auth.dart';
 import 'package:brew_crew/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:brew_crew/shared/loading.dart';
+import 'package:flutter/services.dart';
 
 class Register extends StatefulWidget {
   // Here instead of State class as this is the constructor for the widget
@@ -41,7 +42,6 @@ class _RegisterState extends State<Register> {
                   label: Text('Sign In'),
                 ),
               ],
-              centerTitle: true,
             ),
             body: Container(
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -91,7 +91,7 @@ class _RegisterState extends State<Register> {
                               .registerWithEmailAndPassword(email, password);
                           if (result == null) {
                             setState(() {
-                              error = 'Please enter a valid email';
+                              error = 'Invalid email input';
                               loading = false;
                             });
                           }

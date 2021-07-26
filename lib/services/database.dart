@@ -1,7 +1,6 @@
-import 'package:brew_crew/models/user.dart';
-import 'package:brew_crew/screens/home/brew_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:brew_crew/models/brew.dart';
 
 class DatabaseService {
   final String uid;
@@ -21,19 +20,19 @@ class DatabaseService {
   }
 
   // Get brews stream from database
-  Stream<QuerySnapshot> get brews {
-    return brewCollection.snapshots();
+  Stream<List<Brew>> get brews {
+    return brewCollection.snapshots().map(_brewListFromSnapshot);
   }
 
-  // Get Brew List from database
-  /*
-  List<UserApp> brewListFromSnapshot(QuerySnapshot snapshot) {
+  // Get Brew List from database snapshot
+  List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
-      return (
-        name: doc.data()!['name'],
-        strength: doc.data()!['strength'],
-        sugars: doc.data()!['sugars'],
+      return Brew(
+        // Return a default value if the map data does not exist
+        name: doc.get('name') ?? '',
+        strength: doc.get('strength') ?? 0,
+        sugars: doc.get('sugars') ?? '',
       );
     }).toList();
-  }*/
+  }
 }

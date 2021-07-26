@@ -47,7 +47,6 @@ class _SignInState extends State<SignIn> {
                   label: Text('Register'),
                 ),
               ],
-              centerTitle: true,
             ),
             body: Container(
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
